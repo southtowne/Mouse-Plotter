@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>MousePlotter</RootNamespace>
+    <AssemblyName>MousePlotter</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Product>MousePlotter</Product>
+    <Description>Native mouse polling/jitter tester and plotter, a dark-mode port of MouseTester.</Description>
+    <Version>1.0.0</Version>
+    <InvariantGlobalization>true</InvariantGlobalization>
+
+    <!-- `dotnet publish -c Release` alone produces one self-contained exe:
+         no separately-installed .NET runtime and no loose dependency dlls
+         (OxyPlot etc.) need to ship alongside it. -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+
+    <!-- MousePlotterEtw.dll (native/, built separately: see native/build.bat)
+         isn't a recognized runtime-native dependency on its own, so without
+         this it would publish as a loose file next to the exe instead of
+         bundling into it. -->
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OxyPlot.WindowsForms" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="native\MousePlotterEtw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>MousePlotterEtw.dll</Link>
+    </Content>
+  </ItemGroup>
+
+</Project>

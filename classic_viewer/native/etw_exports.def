@@ -1,0 +1,6 @@
+LIBRARY MousePlotterEtw
+EXPORTS
+    etw_start
+    etw_stop
+    etw_pair
+    etw_free_pairing
