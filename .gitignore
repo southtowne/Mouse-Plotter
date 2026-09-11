@@ -1,0 +1,12 @@
+zig-*/
+build/
+*.csv
+classic_viewer/bin/
+classic_viewer/obj/
+classic_viewer/publish/
+classic_viewer/.vs/
+classic_viewer/*.user
+classic_viewer/native/*.dll
+classic_viewer/native/*.lib
+classic_viewer/native/*.exp
+classic_viewer/native/*.pdb
